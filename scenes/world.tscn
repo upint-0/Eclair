@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://cckpudsffwsiw"]
+
+[ext_resource type="PackedScene" uid="uid://c1rpn7vjaukgb" path="res://game_elements/mommy.tscn" id="1_3otgj"]
+[ext_resource type="Script" path="res://scripts/mommy.gd" id="2_l37bf"]
+[ext_resource type="Script" path="res://scripts/SpringArm3D.gd" id="4_8gf6d"]
+[ext_resource type="PackedScene" uid="uid://dkr1dvyujbwpa" path="res://game_elements/child.tscn" id="5_cwd6v"]
+[ext_resource type="Material" uid="uid://dsl43lkog786r" path="res://materials/grid_orange.tres" id="6_4il5b"]
+[ext_resource type="Material" uid="uid://c8vmrcc0rkjj0" path="res://materials/grid_gray.tres" id="6_6pby3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_en346"]
+
+[node name="world" type="Node3D"]
+
+[node name="ducks" type="Node" parent="."]
+
+[node name="child" parent="ducks" instance=ExtResource("5_cwd6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928951, -5)
+
+[node name="child2" parent="ducks" instance=ExtResource("5_cwd6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.928951, 4.91483)
+
+[node name="child3" parent="ducks" instance=ExtResource("5_cwd6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02009, 0.928951, 0.893838)
+
+[node name="child4" parent="ducks" instance=ExtResource("5_cwd6v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4037, 0.928951, -0.280738)
+
+[node name="mommy" parent="." instance=ExtResource("1_3otgj")]
+script = ExtResource("2_l37bf")
+
+[node name="platform" type="CSGBox3D" parent="."]
+visible = false
+use_collision = true
+size = Vector3(10, 0.5, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.901877, 0.0597833, -0.427836, 0.276811, 0.680363, 0.678588, 0.331652, -0.730433, 0.597055, 0, 7, 0)
+shadow_enabled = true
+shadow_blur = 1.5
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(0.707107, 0.541675, -0.454519, 0, 0.642788, 0.766044, 0.707107, -0.541675, 0.454519, 0, 3, 0)
+shape = SubResource("SphereShape3D_en346")
+spring_length = 15.0
+script = ExtResource("4_8gf6d")
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+fov = 30.0
+size = 11.714
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.347076, 0.446092, -0.347847)
+size = Vector3(15.3642, 1, 14.7821)
+material = ExtResource("6_6pby3")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(-1, 0.000593336, 0, -0.000593336, -1, 0, 0, 0, 1, 0.395073, 0.760613, 3.38395)
+operation = 2
+polygon = PackedVector2Array(-5.99155, -0.0401841, 0, 1, 1, 1, 6.69912, -0.181)
+depth = 5.88
+material = ExtResource("6_6pby3")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0603001, 1.22393, 4.3468)
+size = Vector3(6.81938, 1.64172, 1)
+material = ExtResource("6_6pby3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152817, 1.2509, -3.42834)
+size = Vector3(6.81938, 1.64172, 1)
+material = ExtResource("6_6pby3")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.345399, 0.899004, 0.269241, -0.926014, 0.373054, -0.0576907, -0.152305, -0.229394, 0.961343, 9.79394, 0.909626, -5.20275)
+radius = 1.20222
+height = 5.72694
+material = ExtResource("6_6pby3")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.9886, 2.06403, -2.50441)
+size = Vector3(22.7905, 1.77353, 21.9609)
+material = ExtResource("6_6pby3")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D/CSGBox3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.34331, -0.736606, 11.2485)
+operation = 2
+polygon = PackedVector2Array(-0.354906, 0.209283, -2.97974, 2.08036, 1.99525, 2.1932, 1.13076, 0.444714)
+depth = 23.05
+material = ExtResource("6_4il5b")

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkr1dvyujbwpa"]
+
+[ext_resource type="Script" path="res://scripts/child.gd" id="1_5abbi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4m0to"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jylwq"]
+radius = 0.876466
+
+[node name="child" type="CharacterBody3D" groups=["child"]]
+floor_max_angle = 1.0472
+script = ExtResource("1_5abbi")
+
+[node name="collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.288215, 0)
+shape = SubResource("SphereShape3D_4m0to")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.288215, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+monitorable = false
+
+[node name="trigger" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.288558, 0)
+shape = SubResource("SphereShape3D_jylwq")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

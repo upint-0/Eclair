@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1rpn7vjaukgb"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_emy0a"]
+
+[node name="Character" type="CharacterBody3D" groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25241, 0)
+floor_max_angle = 1.0472
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_emy0a")
+
+[node name="Body" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.429587, 0)
+
+[node name="Neck" type="CSGTorus3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.378082, 0)
+inner_radius = 0.15
+outer_radius = 0.5
+
+[node name="Head" type="CSGSphere3D" parent="Body/Neck"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.75238e-05, 0.224798, -0.000733614)
+radius = 0.4
+
+[node name="Nose" type="CSGBox3D" parent="Body/Neck/Head"]
+transform = Transform3D(0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.0952497, 0.334604)
